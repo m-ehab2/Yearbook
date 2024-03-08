@@ -5,6 +5,10 @@ import "./index.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import LoginPage from "./pages/Login/LoginPage.tsx";
 import SignUp from "./pages/SignUp/SignUp.tsx";
+import { initializeApp } from "firebase/app";
+import { firebaseConfig } from "./firebaseConfig";
+
+initializeApp(firebaseConfig);
 const router = createBrowserRouter([
   {
     path: "/",
