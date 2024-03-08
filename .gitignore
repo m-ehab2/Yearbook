@@ -27,3 +27,5 @@ dist-ssr
 reqs.md
 
 package-lock.json
+
+firebaseConfig.ts
