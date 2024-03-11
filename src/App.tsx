@@ -17,24 +17,53 @@ import "react-toastify/dist/ReactToastify.css";
 import { useEffect, useState } from "react";
 import { firebaseConfig } from "./firebaseConfig";
 import { initializeApp } from "firebase/app";
-import MyProfile from "./pages/Profile/MyProfile";
+import MyProfile from "./pages/MyProfile/MyProfile";
 import About from "./pages/about/About";
 import Contact from "./pages/Contact/Contact";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
+import UserProfile from "./pages/UserProfile/UserProfile";
+import { Box, CircularProgress } from "@mui/material";
 
 const theme = createTheme(themeOptions);
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState<boolean | null>(null);
+  const [error, setError] = useState<string | null>(null);
+
   useEffect(() => {
-    const auth = getAuth();
-    const unsubscribe = onAuthStateChanged(auth, (user) => {
-      setIsLoggedIn(!!user);
-    });
+    const initializeFirebase = async () => {
+      try {
+        const auth = getAuth();
+        await initializeApp(firebaseConfig);
+        onAuthStateChanged(auth, (user) => {
+          setIsLoggedIn(!!user);
+        });
+      } catch (error) {
+        setError("Failed to initialize Firebase. Please try again later.");
+      }
+    };
 
-    initializeApp(firebaseConfig);
-
-    return unsubscribe;
+    initializeFirebase();
   }, []);
+
+  if (error) {
+    return <div>Error: {error}</div>;
+  }
+
+  if (isLoggedIn === null) {
+    return (
+      <Box
+        sx={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          height: "100vh",
+        }}
+      >
+        <CircularProgress color="primary" size={"100px"} />
+      </Box>
+    );
+  }
+
   return (
     <>
       <ThemeProvider theme={theme}>
@@ -85,6 +114,16 @@ function App() {
               }
             />
             <Route
+              path="/profile/:id"
+              element={
+                <>
+                  <NavBar />
+                  <UserProfile />
+                  <Footer />
+                </>
+              }
+            />
+            <Route
               path="/contact"
               element={
                 <>
@@ -102,6 +141,7 @@ function App() {
               path="/register"
               element={isLoggedIn ? <Navigate to="/myprofile" /> : <SignUp />}
             />
+            <Route path="*" element={<h1>Error 404</h1>} />
           </Routes>
         </BrowserRouter>
       </ThemeProvider>
