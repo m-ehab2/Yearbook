@@ -1,6 +1,5 @@
 import * as React from "react";
 import { AppBar, Box, Toolbar, Container, Button } from "@mui/material";
-
 import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
 import Menu from "@mui/material/Menu";
@@ -8,20 +7,28 @@ import Avatar from "@mui/material/Avatar";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import whiteLogo from "../assets/horizontalLogoWhite.png";
-import { useNavigate } from "react-router-dom";
-import useAuthPersistence from "../hooks/Auth";
+import { useLocation, useNavigate } from "react-router-dom";
 import { getAuth, signOut } from "firebase/auth";
 import { toast } from "react-toastify";
-const pages = ["Home", "MEARN 2024", "About", "Contact"];
-const settings = ["Profile", "Logout"];
 function NavBar() {
   const auth = getAuth();
-  const { sessionToken, clearAuthCookie } = useAuthPersistence();
   const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(
     null
   );
   const navigate = useNavigate();
-
+  const location = useLocation();
+  const normalStatus = {
+    color: "white",
+    "&:hover": {
+      backgroundColor: "#f9f9f9",
+      color: "primary.main",
+    },
+  };
+  const activeStatus = {
+    backgroundColor: "#f9f9f9",
+    color: "primary.main",
+    "&:hover": { backgroundColor: "#f9f9f9", color: "primary.main" },
+  };
   const handleOpenUserMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorElUser(event.currentTarget);
   };
@@ -36,16 +43,15 @@ function NavBar() {
 
   const handleCloseUserMenu = async (option: string) => {
     setAnchorElUser(null);
-    if (option === "Profile") {
+    if (option === "profile") {
       navigate("/myprofile");
-    } else if (option === "Logout") {
+    } else if (option === "logout") {
       try {
         await toast.promise(signOut(auth), {
           pending: "Logging Out",
           success: "Logout Successful",
           error: "Logout Failed",
         });
-        clearAuthCookie();
         navigate("/home");
       } catch (err: unknown) {
         toast.error("Server Error, please try again later");
@@ -57,7 +63,7 @@ function NavBar() {
     <AppBar
       position="static"
       color="primary"
-      sx={{ padding: "0px 128px", marginBottom: "10px" }}
+      sx={{ padding: "0px 128px", marginBottom: "30px" }}
     >
       <Container maxWidth="xl">
         <Toolbar disableGutters>
@@ -70,21 +76,38 @@ function NavBar() {
               gap: "30px",
             }}
           >
-            {pages.map((page) => (
-              <Button
-                sx={{
-                  color: "white",
-                  "&:hover": {
-                    backgroundColor: "#f9f9f9",
-                    color: "primary.main",
-                  },
-                }}
-                key={page}
-                onClick={() => handleClick(page)}
-              >
-                {page}
-              </Button>
-            ))}
+            <Button
+              sx={
+                location.pathname === "/home" || location.pathname === "/"
+                  ? activeStatus
+                  : normalStatus
+              }
+              onClick={() => handleClick("home")}
+            >
+              HOME
+            </Button>
+            <Button
+              sx={
+                location.pathname === "/mearn2024" ? activeStatus : normalStatus
+              }
+              onClick={() => handleClick("MEARN 2024")}
+            >
+              MEARN 2024
+            </Button>
+            <Button
+              sx={location.pathname === "/about" ? activeStatus : normalStatus}
+              onClick={() => handleClick("about")}
+            >
+              about
+            </Button>
+            <Button
+              sx={
+                location.pathname === "/contact" ? activeStatus : normalStatus
+              }
+              onClick={() => handleClick("contact")}
+            >
+              Contact
+            </Button>
           </Box>
 
           <Box sx={{ flexGrow: 0 }}>
@@ -92,10 +115,7 @@ function NavBar() {
               <>
                 <Tooltip title="Open settings">
                   <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                    <Avatar
-                      alt={auth.currentUser?.displayName}
-                      src="/static/images/avatar/2.jpg"
-                    />
+                    <Avatar src="/static/images/avatar/2.jpg" />
                   </IconButton>
                 </Tooltip>
                 <Menu
@@ -114,23 +134,21 @@ function NavBar() {
                   open={Boolean(anchorElUser)}
                   onClose={handleCloseUserMenu}
                 >
-                  {settings.map((setting) => (
-                    <MenuItem
-                      key={setting}
-                      onClick={() => handleCloseUserMenu(setting)}
-                    >
-                      <Typography textAlign="center">{setting}</Typography>
-                    </MenuItem>
-                  ))}
+                  <MenuItem onClick={() => handleCloseUserMenu("profile")}>
+                    <Typography textAlign="center">Profile</Typography>
+                  </MenuItem>
+                  <MenuItem onClick={() => handleCloseUserMenu("logout")}>
+                    <Typography textAlign="center">Logout</Typography>
+                  </MenuItem>
                 </Menu>
               </>
             ) : (
               <Button
                 sx={{
-                  backgroundColor: "#fff",
+                  backgroundColor: "#f9f9f9",
                   color: "primary.main",
                   "&:hover": {
-                    backgroundColor: "#f9f9f9",
+                    backgroundColor: "#f0f0f0",
                   },
                 }}
                 onClick={() => handleClick("login")}
