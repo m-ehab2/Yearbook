@@ -131,6 +131,8 @@ body {
   flex-direction: column;
   justify-content: space-between;
   position: relative;
+  color: #0c0c0c;
+  background-color: #f9f9f9;
 }
 a {
   color: unset;
