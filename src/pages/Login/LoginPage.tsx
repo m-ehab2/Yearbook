@@ -1,4 +1,3 @@
-import React from "react";
 import Grid from "@mui/material/Grid";
 import LoginForm from "./LoginForm";
 import RightPanel from "../SignUp/RightPanel";
