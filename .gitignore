@@ -26,6 +26,6 @@ dist-ssr
 # Requirments .md
 reqs.md
 
-package-lock.json
 
-firebaseConfig.ts
+src/firebaseConfig.ts
+package-lock.json
