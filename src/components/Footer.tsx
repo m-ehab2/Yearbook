@@ -13,12 +13,12 @@ export default function Footer() {
       component="footer"
       sx={{
         backgroundColor: "primary.main",
-        color: "#000",
-        padding: "20px 128px",
+        padding: "30px 128px",
         textAlign: "center",
         display: "flex",
         alignItems: "top",
         justifyContent: "space-between",
+        marginTop: "30px",
       }}
     >
       <Box
@@ -28,14 +28,14 @@ export default function Footer() {
           flexDirection: "column",
           justifyContent: "space-between",
           gap: "10px",
-          color: "white",
+          color: "#f0f0f0",
           width: "50%",
         }}
       >
         <Box>
           <img src={whiteLogo} alt="" height="40px" />
         </Box>
-        <Typography color={"white"}>
+        <Typography color={"#f0f0f0"}>
           Empowering ITI alumni and aspiring students alike, our website serves
           as a central hub for networking, information, and career opportunities
           in the field of technology.
@@ -61,7 +61,7 @@ export default function Footer() {
 
       <Box
         sx={{
-          color: "white",
+          color: "#f0f0f0",
           display: "flex",
           flexDirection: "column",
           alignItems: "start",
@@ -76,8 +76,8 @@ export default function Footer() {
             display: "flex",
             flexDirection: "column",
             alignItems: "start",
-            gap: "10px",
-            fontSize: "20px",
+            gap: "20px",
+            fontSize: "16px",
             marginLeft: "10px",
           }}
         >
@@ -112,7 +112,7 @@ export default function Footer() {
       </Box>
       <Box
         sx={{
-          color: "white",
+          color: "#f0f0f0",
           display: "flex",
           flexDirection: "column",
           alignItems: "start",
@@ -128,7 +128,7 @@ export default function Footer() {
             flexDirection: "column",
             alignItems: "start",
             gap: "10px",
-            fontSize: "20px",
+            fontSize: "16px",
             marginLeft: "10px",
           }}
         >
@@ -136,36 +136,31 @@ export default function Footer() {
             sx={{
               display: "flex",
               gap: "15px",
-              fontSize: "20px",
               alignItems: "center",
             }}
           >
             <EmailIcon />
-            <Typography fontSize={"20px"}>muhamedehab1@gmail.com</Typography>
+            <Typography>muhamedehab1@gmail.com</Typography>
           </Box>
           <Box
             sx={{
               display: "flex",
               gap: "15px",
-              fontSize: "20px",
               alignItems: "center",
             }}
           >
             <LocalPhoneIcon />
-            <Typography fontSize={"20px"}>(+20) 12 345 7890</Typography>
+            <Typography>(+20) 12 345 7890</Typography>
           </Box>
           <Box
             sx={{
               display: "flex",
               gap: "15px",
-              fontSize: "20px",
               alignItems: "center",
             }}
           >
             <PlaceIcon />
-            <Typography fontSize={"20px"}>
-              123 Tech Street, City, Country
-            </Typography>
+            <Typography>123 Tech Street, City, Country</Typography>
           </Box>
         </Box>
       </Box>
