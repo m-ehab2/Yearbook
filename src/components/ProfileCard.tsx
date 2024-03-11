@@ -1,4 +1,4 @@
-import { Box, Typography, Link } from "@mui/material";
+import { Box, Typography, Link, IconButton } from "@mui/material";
 import Avatar from "@mui/material/Avatar";
 import GitHubIcon from "@mui/icons-material/GitHub";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
@@ -7,7 +7,7 @@ import AccountBoxIcon from "@mui/icons-material/AccountBox";
 import { useLocation } from "react-router-dom";
 import { getAuth } from "firebase/auth";
 import { Link as RouterLink } from "react-router-dom";
-
+import EditIcon from "@mui/icons-material/Edit";
 interface UserProfile {
   firstName: string;
   lastName: string;
@@ -47,14 +47,14 @@ export default function ProfileCard({ profile }: cardProps) {
     >
       {profile && profile?.uid === auth.currentUser?.uid ? (
         location.pathname === "/mearn2024" ? (
-          <Link
+          <IconButton
             component={RouterLink}
             to={"/myprofile"}
             sx={{ position: "absolute", top: "10px", right: "10px" }}
-            underline="none"
+            color="primary"
           >
-            Edit
-          </Link>
+            <EditIcon />
+          </IconButton>
         ) : null
       ) : null}
       <Avatar
@@ -70,7 +70,7 @@ export default function ProfileCard({ profile }: cardProps) {
           flexDirection: "column",
         }}
       >
-        <Typography fontWeight={"500"}>
+        <Typography variant="h5" fontWeight={"500"}>
           {profile?.firstName} {profile?.lastName}
         </Typography>
         <Typography color={"GrayText"}>{profile?.title}</Typography>
