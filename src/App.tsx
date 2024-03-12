@@ -23,6 +23,10 @@ import Contact from "./pages/Contact/Contact";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import UserProfile from "./pages/UserProfile/UserProfile";
 import { Box, CircularProgress } from "@mui/material";
+import Posts from "./pages/Posts/Posts";
+import CreatePost from "./pages/CreatePost/CreatePost";
+import OnePost from "./pages/OnePost/OnePost";
+import EditPost from "./pages/EditOnePost/EditPost";
 
 const theme = createTheme(themeOptions);
 function App() {
@@ -124,11 +128,51 @@ function App() {
               }
             />
             <Route
+              path="/posts/:id"
+              element={
+                <>
+                  <NavBar />
+                  <OnePost />
+                  <Footer />
+                </>
+              }
+            />
+            <Route
+              path="/posts/edit/:id"
+              element={
+                <>
+                  <NavBar />
+                  <EditPost />
+                  <Footer />
+                </>
+              }
+            />
+            <Route
               path="/contact"
               element={
                 <>
                   <NavBar /> <Contact /> <Footer />
                 </>
+              }
+            />
+            <Route
+              path="/posts"
+              element={
+                <>
+                  <NavBar /> <Posts /> <Footer />
+                </>
+              }
+            />
+            <Route
+              path="/createpost"
+              element={
+                !isLoggedIn ? (
+                  <Navigate to="/login" />
+                ) : (
+                  <>
+                    <NavBar /> <CreatePost /> <Footer />
+                  </>
+                )
               }
             />
             <Route
