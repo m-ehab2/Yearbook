@@ -41,7 +41,7 @@ export default function Batch() {
   return (
     <Box
       sx={{
-        padding: "10px 128px",
+        padding: { xs: "10px", md: "10px 128px" },
         display: "flex",
         flexWrap: "wrap",
         gap: "20px 10px",

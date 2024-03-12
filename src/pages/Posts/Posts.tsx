@@ -39,7 +39,7 @@ export default function Posts() {
   return (
     <Box
       sx={{
-        padding: "20px 128px",
+        padding: { xs: "10px", md: "20px 128px" },
         display: "flex",
         flexDirection: "column",
         gap: "30px",

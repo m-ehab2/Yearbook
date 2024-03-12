@@ -87,7 +87,7 @@ export default function MyProfile() {
     <Box
       component="section"
       sx={{
-        padding: "10px 128px",
+        padding: { xs: "20px", md: "10px 128px" },
         flexGrow: "1",
         display: "flex",
         justifyContent: "center",
@@ -101,15 +101,18 @@ export default function MyProfile() {
           size={"100px"}
         />
       ) : (
-        <Grid container sx={{ height: "100%" }}>
-          <Grid item xs={6}>
+        <Grid
+          container
+          sx={{ height: "100%", flexDirection: { xs: "column", md: "row" } }}
+        >
+          <Grid item xs={12} md={6}>
             <LeftSideForm
               handleSubmit={(e) => handleChangedDetails(e)}
               profile={userProfile}
               reference={reference}
             />
           </Grid>
-          <Grid item xs={6}>
+          <Grid item xs={12} md={6}>
             <RightSideProfile
               profile={userProfile}
               reference={reference}

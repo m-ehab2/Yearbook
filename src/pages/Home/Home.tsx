@@ -5,7 +5,7 @@ import HowToUse from "./HowToUse";
 
 export default function Home() {
   return (
-    <Box sx={{ padding: "10px 128px" }}>
+    <Box sx={{ padding: { xs: "20px", md: "10px 128px" } }}>
       <Hero />
       <Features />
       <HowToUse />

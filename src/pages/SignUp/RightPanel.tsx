@@ -13,7 +13,7 @@ export default function RightPanel() {
         position: "relative",
       }}
     >
-      <Box sx={{ width: "70%", marginTop: "20%" }}>
+      <Box sx={{ width: "70%", marginTop: { xs: "20px", md: "20%" } }}>
         <img src={whiteLogo} alt="Patchbook Logo" width="100%" />
       </Box>
       <Typography
@@ -33,6 +33,7 @@ export default function RightPanel() {
           overflow: "hidden",
           position: "absolute",
           bottom: "0",
+          display: { xs: "none", md: "block" },
         }}
       >
         <img

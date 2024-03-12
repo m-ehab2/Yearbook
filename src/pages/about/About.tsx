@@ -4,7 +4,7 @@ export default function About() {
   return (
     <Box
       sx={{
-        padding: "20px 128px",
+        padding: { xs: "20px", md: "20px 128px" },
         flexGrow: "1",
         display: "flex",
         flexDirection: "column",

@@ -7,18 +7,21 @@ import XIcon from "@mui/icons-material/X";
 import EmailIcon from "@mui/icons-material/Email";
 import LocalPhoneIcon from "@mui/icons-material/LocalPhone";
 import PlaceIcon from "@mui/icons-material/Place";
+
 export default function Footer() {
   return (
     <Box
       component="footer"
       sx={{
         backgroundColor: "primary.main",
-        padding: "30px 128px",
+        padding: "30px 20px",
         textAlign: "center",
         display: "flex",
-        alignItems: "top",
+        flexDirection: { xs: "column", md: "row" },
+        alignItems: { xs: "center", md: "top" },
         justifyContent: "space-between",
         marginTop: "30px",
+        gap: { xs: "20px", md: "10px" },
       }}
     >
       <Box
@@ -29,7 +32,8 @@ export default function Footer() {
           justifyContent: "space-between",
           gap: "10px",
           color: "#f0f0f0",
-          width: "50%",
+          width: { xs: "100%", md: "50%" },
+          marginBottom: { xs: "20px", sm: 0 },
         }}
       >
         <Box>
@@ -45,6 +49,7 @@ export default function Footer() {
             marginTop: "10px",
             display: "flex",
             gap: "20px",
+            justifyContent: "center", // Center align social icons for smaller screens
           }}
         >
           <a href="https://github.com/m-ehab2/Yearbook">
@@ -66,6 +71,7 @@ export default function Footer() {
           flexDirection: "column",
           alignItems: "start",
           gap: "20px",
+          width: { xs: "100%", md: "25%" },
         }}
       >
         <Typography fontWeight={700} variant="h5">
@@ -89,6 +95,15 @@ export default function Footer() {
             sx={{ marginRight: 2, fontFamily: "Roboto" }}
           >
             Home
+          </Link>
+          <Link
+            component={RouterLink}
+            to={"/posts"}
+            color="inherit"
+            underline="none"
+            sx={{ marginRight: 2, fontFamily: "Roboto" }}
+          >
+            Posts
           </Link>
           <Link
             component={RouterLink}
@@ -117,6 +132,7 @@ export default function Footer() {
           flexDirection: "column",
           alignItems: "start",
           gap: "20px",
+          width: { xs: "100%", md: "25%" },
         }}
       >
         <Typography fontWeight={700} variant="h5">

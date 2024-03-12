@@ -14,11 +14,34 @@ import {
 } from "firebase/firestore";
 import { toast } from "react-toastify";
 import { getDownloadURL, getStorage, ref, uploadBytes } from "firebase/storage";
-
+import { useNavigate } from "react-router-dom";
+interface UserProfile {
+  firstName: string;
+  lastName: string;
+  uid: string;
+  title?: string;
+  phone?: string;
+  motto?: string;
+  gitHubLink?: string;
+  linkedInLink?: string;
+  xLink?: string;
+  profilePic?: string;
+}
 export default function CreatePost() {
   const [uploading, setUploading] = useState(false);
   const [file, setFile] = useState<File | null>(null);
-  const [userData, setUserData] = useState(null);
+  const [userData, setUserData] = useState<UserProfile>({
+    firstName: "",
+    lastName: "",
+    uid: "",
+    phone: "",
+    title: "",
+    motto: "",
+    gitHubLink: "",
+    linkedInLink: "",
+    xLink: "",
+    profilePic: "",
+  });
   const auth = getAuth();
   useEffect(() => {
     const fetchUserData = async () => {
@@ -32,7 +55,7 @@ export default function CreatePost() {
           try {
             const snapshot = await getDocs(userQuery);
             snapshot.forEach((doc) => {
-              setUserData(doc.data());
+              setUserData(doc.data() as UserProfile);
             });
           } catch (error) {
             console.error("Error getting user profile:", error);
@@ -58,6 +81,7 @@ export default function CreatePost() {
       .min(100, `Post Content Must be more than 100 Characters`)
       .required("Required"),
   });
+  const navigate = useNavigate();
   const handleSubmit = async (values: typeof initialValues) => {
     if (!file) {
       toast.error("Please Attach a Picture to your post");
@@ -78,6 +102,7 @@ export default function CreatePost() {
         });
         toast.success("Post Created Successfully");
         setUploading(false);
+        navigate("/posts");
       } catch (error) {
         toast.error("An Unexpected Error Occured");
         setUploading(false);
@@ -175,6 +200,7 @@ export default function CreatePost() {
         {uploading ? "Uploading..." : "Create Post"}{" "}
       </Button>
       <PostItem
+        id=""
         userUid={userData && userData.uid}
         authorName={userData && userData.firstName + " " + userData.lastName}
         title={formik.values.Title}

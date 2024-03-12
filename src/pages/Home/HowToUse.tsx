@@ -7,11 +7,18 @@ export default function HowToUse() {
       <Typography variant="h4" gutterBottom color="primary">
         How to Use
       </Typography>
-      <Box sx={{ display: "flex", justifyContent: "space-between" }}>
+      <Box
+        sx={{
+          display: "flex",
+          justifyContent: "space-between",
+          flexDirection: { xs: "column", md: "row" },
+          alignItems: "center",
+        }}
+      >
         <Box
           sx={{
             marginBottom: "20px",
-            width: "30%",
+            width: { xs: "90%", md: "30%" },
             backgroundColor: "#f3f3f3",
             padding: "10px",
             borderRadius: "10px",
@@ -28,7 +35,7 @@ export default function HowToUse() {
         <Box
           sx={{
             marginBottom: "20px",
-            width: "30%",
+            width: { xs: "90%", md: "30%" },
             backgroundColor: "#f3f3f3",
             padding: "10px",
             borderRadius: "10px",
@@ -46,7 +53,7 @@ export default function HowToUse() {
         <Box
           sx={{
             marginBottom: "20px",
-            width: "30%",
+            width: { xs: "90%", md: "30%" },
             backgroundColor: "#f3f3f3",
             padding: "10px",
             borderRadius: "10px",

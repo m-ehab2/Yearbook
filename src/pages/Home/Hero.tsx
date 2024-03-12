@@ -17,9 +17,14 @@ export default function Hero() {
         color: "#f9f9f9",
       }}
     >
-      <Typography variant="h2">
+      <Typography variant="h2" sx={{ fontSize: { xs: "32px", md: "64px" } }}>
         Welcome to{" "}
-        <Typography fontWeight={400} variant="h2" component={"span"}>
+        <Typography
+          fontWeight={400}
+          variant="h2"
+          component={"span"}
+          sx={{ fontSize: { xs: "32px", md: "unset" } }}
+        >
           BATCHBOOK
         </Typography>
       </Typography>

@@ -10,13 +10,7 @@ import { useFormik } from "formik";
 import { ChangeEvent, useEffect, useState } from "react";
 import * as Yup from "yup";
 import PostItem from "../../components/PostItem";
-import {
-  doc,
-  getDoc,
-  getFirestore,
-  updateDoc,
-  query,
-} from "firebase/firestore";
+import { doc, getDoc, getFirestore, updateDoc } from "firebase/firestore";
 import { getDownloadURL, getStorage, uploadBytes, ref } from "firebase/storage";
 import { toast } from "react-toastify";
 import { useParams } from "react-router-dom";
@@ -81,7 +75,7 @@ export default function EditPost() {
     try {
       setUpdating(true);
       const db = getFirestore();
-      const postDocRef = doc(db, "posts", id);
+      const postDocRef = doc(db, "posts", id || "");
       if (file) {
         const storage = getStorage();
         const storageRef = ref(storage, `post_pics/${Date.now()}`);

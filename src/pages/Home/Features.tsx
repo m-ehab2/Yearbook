@@ -10,6 +10,9 @@ export default function Features() {
         sx={{
           display: "flex",
           justifyContent: "space-between",
+          flexDirection: { xs: "column", md: "row" },
+          alignItems: "center",
+          gap: "10px",
         }}
       >
         <Box
@@ -18,7 +21,7 @@ export default function Features() {
             padding: "10px",
             borderRadius: "10px",
             boxShadow: "0 2px 4px rgba(0, 0, 0, 0.1)",
-            width: "30%",
+            width: { xs: "90%", md: "30%" },
           }}
         >
           <Typography variant="h6" gutterBottom>
@@ -35,7 +38,7 @@ export default function Features() {
             padding: "10px",
             borderRadius: "10px",
             boxShadow: "0 2px 4px rgba(0, 0, 0, 0.1)",
-            width: "30%",
+            width: { xs: "90%", md: "30%" },
           }}
         >
           <Typography variant="h6" gutterBottom>
@@ -52,7 +55,7 @@ export default function Features() {
             padding: "10px",
             borderRadius: "10px",
             boxShadow: "0 2px 4px rgba(0, 0, 0, 0.1)",
-            width: "30%",
+            width: { xs: "90%", md: "30%" },
           }}
         >
           <Typography variant="h6" gutterBottom>

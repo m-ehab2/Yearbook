@@ -54,7 +54,7 @@ export default function UserProfile() {
   }, [id]);
 
   return (
-    <Box sx={{ padding: "20px 128px" }}>
+    <Box sx={{ padding: { xs: "10px", md: "20px 128px" } }}>
       <Typography variant="h4">User Profile</Typography>
       {userData ? (
         <Grid container>
@@ -146,7 +146,7 @@ export default function UserProfile() {
             {userData.xLink && (
               <Typography variant="body1">
                 <Typography color={"primary"} variant="h6">
-                  X (formerly Twitter) Link:
+                  X (Twitter) Link:
                 </Typography>{" "}
                 <Link
                   href={userData.xLink}

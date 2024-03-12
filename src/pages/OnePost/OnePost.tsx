@@ -1,7 +1,8 @@
-import { CircularProgress, Container, Typography } from "@mui/material";
+import { CircularProgress, Container, Link, Typography } from "@mui/material";
 import { doc, getDoc, getFirestore } from "firebase/firestore";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import { Link as RouterLink } from "react-router-dom";
 
 interface PostData {
   title: string | null;
@@ -46,7 +47,9 @@ export default function OnePost() {
   }, [id]);
 
   return (
-    <Container sx={{ flexGrow: "1" }} maxWidth="md">
+    <Container
+      sx={{ flexGrow: "1", padding: { xs: "20px", md: "20px 128px" } }}
+    >
       {loading ? (
         <CircularProgress />
       ) : postData ? (
@@ -55,7 +58,10 @@ export default function OnePost() {
             {postData.title}
           </Typography>
           <Typography variant="subtitle1" gutterBottom>
-            Author: {postData.userName}
+            Author:{" "}
+            <Link to={`/profile/${postData.uid}`} component={RouterLink}>
+              {postData.userName}
+            </Link>
           </Typography>
           {postData.picUrl && (
             <img

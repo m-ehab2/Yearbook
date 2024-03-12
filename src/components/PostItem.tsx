@@ -27,17 +27,18 @@ export default function PostItem({
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
+        flexDirection: { xs: "column-reverse", md: "row" },
         gap: "10px",
         boxShadow: "0px 6px 7px 1px rgba(0,0,0,0.3)",
         borderRadius: "10px",
         borderColor: "primary.main",
         borderWidth: "1px",
         borderStyle: "solid",
-        height: "200px",
+        height: { md: "200px" },
         padding: "10px 20px",
       }}
     >
-      <Box sx={{ width: "80%" }}>
+      <Box sx={{ width: { xs: "100%", md: "80%" } }}>
         <Typography variant="h4">{title}</Typography>
         <Typography variant="body1">
           By{" "}
@@ -64,7 +65,7 @@ export default function PostItem({
           >
             Read More
           </Button>
-          {auth.currentUser?.uid && (
+          {auth.currentUser?.uid === userUid && (
             <Button
               to={`/posts/edit/${id}`}
               component={RouterLink}
@@ -77,8 +78,8 @@ export default function PostItem({
       </Box>
       <Box
         sx={{
-          width: "20%",
-          height: "90%",
+          width: { xs: "100%", md: "20%" },
+          height: { xs: "200px", md: "90%" },
           borderRadius: "10px",
           overflow: "hidden",
         }}

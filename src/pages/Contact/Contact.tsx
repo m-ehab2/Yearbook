@@ -12,7 +12,7 @@ export default function Contact() {
   };
 
   return (
-    <Box sx={{ padding: "20px 128px" }}>
+    <Box sx={{ padding: { xs: "20px", md: "20px 128px" } }}>
       <Typography variant="h4" gutterBottom color="primary">
         Contact Us
       </Typography>
