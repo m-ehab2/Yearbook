@@ -87,6 +87,12 @@ function NavBar() {
               HOME
             </Button>
             <Button
+              sx={location.pathname === "/posts" ? activeStatus : normalStatus}
+              onClick={() => handleClick("posts")}
+            >
+              POSTS
+            </Button>
+            <Button
               sx={
                 location.pathname === "/mearn2024" ? activeStatus : normalStatus
               }
